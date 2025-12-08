@@ -1,4 +1,4 @@
-# 🎬 Kolekcja Filmów
+# 🎬 Kolekcja Filmów - Hocus Pocus
 
 Prosta aplikacja webowa napisana w Django, służąca do katalogowania i przeglądania filmów. Projekt bazuje na strukturze Django, ale posiada własny styl graficzny (Dark Mode) i dedykowaną logikę pod filmy.
 
