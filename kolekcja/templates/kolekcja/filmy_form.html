@@ -1,0 +1,12 @@
+{% extends 'kolekcja/base.html' %}
+
+{% block content %}
+    <h2 class="moje_filmy">Dodaj Nowy Film</h2>
+    
+    <div class="form-container">
+        <form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">Zapisz Film</button>
+        </form>
+    </div>
+{% endblock %}

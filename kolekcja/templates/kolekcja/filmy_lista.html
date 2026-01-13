@@ -1,23 +1,20 @@
-{% load static %}
+{% extends 'kolekcja/base.html' %}
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title class="moja_kolekcja">Moja Kolekcja</title>
-        <link rel="stylesheet" href="{% static 'css/kolekcja.css' %}">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    </head>
-    <body>
+{% block content %}
+    <h1 class="moje_filmy">Moje Filmy</h1>
 
-        <h1 class="moje_filmy">Moje Filmy</h1>
-
-        {% for film in filmy %}
+    {% for film in filmy %}
+        <a href="{% url 'edytuj_film' film.id %}" class="link-filmu">
             <div class="karta-filmu">
                 <h2 class="tytul">{{ film.tytul }}</h2>
+                
+                {% if film.plakat %}
+                    <img src="{{ film.plakat.url }}" alt="Plakat" class="plakat-img">
+                {% endif %}
+                
                 <p class="rezyser">REŻYSER: <span>{{ film.rezyser }}</span></p>
                 <p class="opis">{{ film.opis }}</p>
             </div>
-        {% endfor %}
-
-    </body>
-</html>
+        </a>
+    {% endfor %}
+{% endblock %}

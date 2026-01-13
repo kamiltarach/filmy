@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Czary Mary</title>
+        <link rel="stylesheet" href="{% static 'css/kolekcja.css' %}">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="navbar">
+            <a href="/" class="logo">CZARY MARY - STRONA INFORMACYJNA</a>
+            <a href="{% url 'nowy_film' %}" class="btn-dodaj">+ DODAJ FILM</a>
+        </div>
+
+        <div class="content-container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
