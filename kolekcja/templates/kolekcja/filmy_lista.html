@@ -12,6 +12,12 @@
                     <img src="{{ film.plakat.url }}" alt="Plakat" class="plakat-img">
                 {% endif %}
                 
+                {% if film.ocena %}
+                    <div class="ocena-badge">
+                        ⭐ {{ film.ocena }} / 10
+                    </div>
+                {% endif %}
+
                 <p class="rezyser">REŻYSER: <span>{{ film.rezyser }}</span></p>
                 <p class="opis">{{ film.opis }}</p>
             </div>
