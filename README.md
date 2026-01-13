@@ -4,7 +4,7 @@ Prosta aplikacja webowa napisana w Django, służąca do katalogowania i przegl�
 
 ## ✨ Funkcjonalności
 - **Lista Filmów:** Przeglądanie dodanych pozycji w nowoczesnym, ciemnym interfejsie.
-- **Panel Admina:** Łatwe dodawanie, edycja i usuwanie filmów z bazy danych.
+- **Panel Admina:** Łatwe dodawanie, edycja i usuwanie filmów z bazy danych przez pośrednictwo strony.
 - **Baza danych:** SQLite (lokalna).
 
 ## 🛠 Technologie
