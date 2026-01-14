@@ -50,4 +50,7 @@ Nowoczesna aplikacja webowa napisana w Django do zarządzania domową bibliotek�
 Aplikacja będzie dostępna pod adresem: `http://127.0.0.1:8000/`
 
 ## 📸 Zrzuty ekranu
-*(Tutaj możesz wrzucić te screeny, które mi pokazywałeś, np. folderu screenshots)*
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/e63ce588-75df-4bf8-aa8b-79fb6acfecda" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/aa858633-4f66-4891-8e17-62dd8d61ea0a" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/b9f92d16-99cc-4279-a9f5-37625470f062" />
+
