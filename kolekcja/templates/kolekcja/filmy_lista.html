@@ -1,7 +1,11 @@
 {% extends 'kolekcja/base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1 class="moje_filmy">Moje Filmy</h1>
+
+    <div class="logo-container">
+        <img src="{% static 'img/logo-czary.png' %}" alt="Czary Mary Logo" class="logo-baner">
+    </div>
 
     <div class="search-container">
         <form method="GET">
@@ -37,8 +41,7 @@
                         
                         <div class="przyciski-akcji">
                             <a href="{% url 'edytuj_film' film.id %}" class="btn-edytuj">EDYTUJ</a>
-                            
-                            <a href="{% url 'usun_film' film.id %}" class="btn-edytuj" style="background-color: #E50914; border: 1px solid #E50914; margin-left: 10px;">USUŃ</a>
+                            <a href="{% url 'usun_film' film.id %}" class="btn-edytuj btn-usun" style="background-color: #E50914; border: 1px solid #E50914; margin-left: 10px;">USUŃ</a>
                         </div>
                     </div>
                 </div>
@@ -49,12 +52,9 @@
 
     <script>
         function pokazSzczegoly(element) {
-            // Jeśli klikniemy w przycisk (a, button), nie zwijaj karty
             if (event.target.tagName === 'A' || event.target.tagName === 'BUTTON') {
                 return;
             }
-            
-            // Przełączamy klasę z 'zwiniete' na 'rozwiniete'
             element.classList.toggle("rozwiniete");
             element.classList.toggle("zwiniete");
         }

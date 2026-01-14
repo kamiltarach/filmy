@@ -1,9 +1,9 @@
 /* =========================================
-   1. GLOBALNE USTAWIENIA I TŁO
+   1. GLOBALNE USTAWIENIA (DARK MODE)
    ========================================= */
    body {
-    background-color: #121212; /* Prawie czarny */
-    color: #e0e0e0;
+    background-color: #121212; /* Głęboka czerń */
+    color: #e0e0e0; /* Jasnoszary tekst (mniej męczy oczy niż biały) */
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
@@ -14,31 +14,32 @@
 }
 
 /* =========================================
-   2. PASEK NAWIGACJI (NAVBAR)
+   2. NAVBAR (MINIMALISTYCZNY)
    ========================================= */
 .navbar {
     width: 100%;
-    background-color: #000;
+    background-color: #000; /* Czysta czerń */
     padding: 15px 0;
-    text-align: center;
-    border-bottom: 2px solid #E50914; /* Netflix Red */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    position: sticky;
+    border-bottom: 2px solid #E50914; /* Czerwona linia na dole */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.8);
+    position: sticky; /* Przyklejony do góry */
     top: 0;
-    z-index: 1000; /* Zawsze na wierzchu */
+    z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 40px;
 }
 
+/* Prosty tekst w menu (zamiast obrazka) */
 .logo {
-    color: #E50914;
-    font-size: 1.8rem;
+    color: #E50914; /* Netflix Red */
+    font-size: 1.5rem;
     font-weight: 700;
     text-decoration: none;
     letter-spacing: 2px;
     text-transform: uppercase;
+    transition: color 0.3s ease;
 }
 
 .logo:hover {
@@ -50,9 +51,9 @@
     text-decoration: none;
     font-weight: bold;
     border: 1px solid white;
-    padding: 8px 15px;
+    padding: 8px 18px;
     border-radius: 4px;
-    transition: 0.3s;
+    transition: all 0.3s;
     font-size: 0.9rem;
 }
 
@@ -62,37 +63,60 @@
 }
 
 /* =========================================
-   3. KONTENER GŁÓWNY I WYSZUKIWARKA
+   3. KONTENER GŁÓWNY
    ========================================= */
 .content-container {
     max-width: 800px;
     width: 90%;
-    margin-top: 40px;
-    padding-bottom: 50px;
+    margin-top: 30px; /* Odstęp od navbaru */
+    padding-bottom: 60px;
 }
 
-.moje_filmy {
-    color: #E50914;
-    font-size: 3rem;
-    margin-bottom: 30px;
-    text-transform: uppercase;
+/* =========================================
+   4. DUŻY BANER Z LOGO (NOWOŚĆ)
+   ========================================= */
+.logo-container {
     text-align: center;
-    text-shadow: 0px 0px 10px rgba(229, 9, 20, 0.5);
+    margin-bottom: 40px;
+    margin-top: 10px;
 }
 
+.logo-baner {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    /* Magiczna fioletowa poświata pasująca do logo "Czary Mary" */
+    box-shadow: 0 0 25px rgba(100, 50, 200, 0.4); 
+    transition: transform 0.3s ease;
+}
+
+.logo-baner:hover {
+    transform: scale(1.02);
+}
+
+/* =========================================
+   5. WYSZUKIWARKA
+   ========================================= */
 .search-container {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     text-align: center;
 }
 
 .search-container input {
-    padding: 12px;
-    width: 300px;
+    padding: 12px 15px;
+    width: 60%;
+    max-width: 300px;
     background-color: #333;
     border: 1px solid #444;
     color: white;
     border-radius: 4px;
     font-size: 1rem;
+    outline: none;
+}
+
+.search-container input:focus {
+    border-color: #E50914;
 }
 
 .search-container button {
@@ -105,6 +129,7 @@
     cursor: pointer;
     font-weight: bold;
     font-size: 1rem;
+    transition: background 0.2s;
 }
 
 .search-container button:hover {
@@ -112,24 +137,24 @@
 }
 
 /* =========================================
-   4. KARTA FILMU (AKORDEON)
+   6. LISTA FILMÓW (AKORDEON)
    ========================================= */
 .karta-filmu {
     background-color: #1e1e1e;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     border-radius: 6px;
     border-left: 6px solid #E50914;
     cursor: pointer;
     transition: background-color 0.2s ease;
-    overflow: visible; /* Ważne, żeby plakat hover mógł wystawać */
     position: relative;
+    overflow: visible; /* Ważne, żeby dymek z plakatem mógł wystawać */
 }
 
 .karta-filmu:hover {
     background-color: #2a2a2a;
 }
 
-/* Sekcja widoczna zawsze (Tytuł) */
+/* Nagłówek (widoczny zawsze) */
 .naglowek-filmu {
     padding: 20px;
     position: relative;
@@ -137,14 +162,14 @@
 
 .tytul {
     margin: 0;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: white;
     font-weight: 500;
 }
 
-/* --- Plakat "Dymek" (Hover) --- */
+/* --- Plakat "Dymek" (Hover na zwiniętej karcie) --- */
 .plakat-hover {
-    display: none; /* Domyślnie ukryty */
+    display: none;
     position: absolute;
     bottom: 80%; /* Wyskakuje nad tytułem */
     left: 20px;
@@ -154,26 +179,26 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.8);
     z-index: 100;
     border: 2px solid #E50914;
-    pointer-events: none;
+    pointer-events: none; /* Żeby nie przeszkadzał w klikaniu */
 }
 
-/* Pokaż dymek tylko gdy najeżdżamy na ZWINIĘTĄ kartę */
+/* Pokazujemy dymek tylko gdy najeżdżamy na ZWINIĘTĄ kartę */
 .zwiniete .naglowek-filmu:hover .plakat-hover {
     display: block;
     animation: fadeIn 0.3s ease-in-out;
 }
 
 /* =========================================
-   5. SZCZEGÓŁY FILMU (ROZWINIĘCIE)
+   7. SZCZEGÓŁY (ROZWINIĘCIE)
    ========================================= */
 .szczegoly {
     display: none; /* Domyślnie ukryte */
     padding: 25px;
-    background-color: #161616; /* Trochę ciemniejsze tło środka */
+    background-color: #161616; /* Ciemniejsze tło w środku */
     border-top: 1px solid #333;
 }
 
-/* Klasa dodawana przez JS po kliknięciu */
+/* Klasa .rozwiniete jest dodawana przez JavaScript */
 .rozwiniete .szczegoly {
     display: block;
     animation: slideDown 0.4s ease;
@@ -185,33 +210,31 @@
     align-items: flex-start;
 }
 
-/* Obrazek wewnątrz rozwinięcia */
 .plakat-duzy {
-    width: 180px;
+    width: 160px;
     border-radius: 6px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
 .teksty {
-    flex: 1; /* Zajmij resztę miejsca */
+    flex: 1;
 }
 
-/* Gwiazdka z oceną */
 .ocena-badge {
-    background-color: #f5c518;
+    background-color: #f5c518; /* IMDb Yellow */
     color: black;
     display: inline-block;
-    padding: 5px 10px;
+    padding: 4px 10px;
     border-radius: 4px;
     font-weight: bold;
+    font-size: 0.9rem;
     margin-bottom: 15px;
-    font-size: 0.95rem;
 }
 
 .rezyser {
     color: #888;
-    font-size: 0.9rem;
-    margin-bottom: 15px;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
     font-weight: 700;
     text-transform: uppercase;
 }
@@ -226,13 +249,18 @@
     color: #d1d1d1;
     line-height: 1.6;
     font-size: 1rem;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
-/* Przycisk Edycji */
+/* Przyciski Edytuj / Usuń */
+.przyciski-akcji {
+    display: flex;
+    gap: 10px;
+}
+
 .btn-edytuj {
     display: inline-block;
-    padding: 10px 25px;
+    padding: 10px 20px;
     background-color: #333;
     color: white;
     text-decoration: none;
@@ -240,57 +268,35 @@
     font-weight: bold;
     transition: 0.2s;
     border: 1px solid #444;
+    font-size: 0.9rem;
 }
 
 .btn-edytuj:hover {
-    background-color: #E50914;
-    border-color: #E50914;
+    background-color: #555;
+    border-color: #666;
 }
 
-/* Responsywność (na telefony) */
-@media (max-width: 600px) {
-    .info-grid {
-        flex-direction: column;
-        align-items: center;
-    }
-    .plakat-duzy {
-        width: 100%;
-        max-width: 200px;
-    }
-    .search-container input {
-        width: 60%;
-    }
+/* Specjalny styl dla przycisku usuwania (zostanie nadpisany inline w HTML, ale tu baza) */
+.btn-usun:hover {
+    background-color: #b20710 !important;
 }
 
 /* =========================================
-   6. ANIMACJE
-   ========================================= */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* =========================================
-   7. STYLE FORMULARZA (DODAJ/EDYTUJ)
+   8. FORMULARZE (DODAJ/EDYTUJ/USUŃ)
    ========================================= */
 .form-container {
     background-color: #1e1e1e;
     padding: 40px;
     border-radius: 8px;
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
+    margin: 0 auto; /* Wyśrodkowanie */
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-.form-container input[type="text"], 
+.form-container input, 
 .form-container textarea, 
-.form-container input[type="number"],
-.form-container input[type="file"] {
+.form-container select {
     width: 100%;
     background-color: #333;
     border: 1px solid #444;
@@ -298,9 +304,7 @@
     padding: 12px;
     margin-bottom: 20px;
     border-radius: 4px;
-    font-size: 1rem;
-    box-sizing: border-box;
-    font-family: inherit;
+    box-sizing: border-box; /* Żeby padding nie psuł szerokości */
 }
 
 .form-container label {
@@ -313,7 +317,7 @@
 .form-container button {
     background-color: #E50914;
     width: 100%;
-    padding: 15px;
+    padding: 14px;
     color: white;
     border: none;
     font-weight: bold;
@@ -327,7 +331,38 @@
     background-color: #f40612;
 }
 
-/* Usuwamy brzydki tekst "Currently: ..." przy edycji obrazka */
+/* Usuwamy brzydki tekst "Currently..." w formularzu edycji obrazka */
 .form-container a {
     color: #E50914;
+    text-decoration: none;
+}
+
+/* =========================================
+   9. ANIMACJE I RWD
+   ========================================= */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+    .info-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .plakat-duzy {
+        width: 100%;
+        max-width: 250px;
+    }
+    .search-container input {
+        width: 50%;
+    }
+    .logo-baner {
+        width: 100%;
+    }
 }
