@@ -1,0 +1,13 @@
+{% extends 'kolekcja/base.html' %}
+
+{% block content %}
+<div class="form-container" style="text-align: center;">
+    <h2 style="color: #E50914;">Czy na pewno usunąć?</h2>
+    <h3 style="color: white;">"{{ film.tytul }}"</h3>
+    
+    <form method="POST">{% csrf_token %}
+        <button type="submit">TAK, USUŃ</button>
+        <a href="{% url 'filmy_lista' %}" class="btn-edytuj" style="margin-top: 10px; display: inline-block;">NIE, WRÓĆ</a>
+    </form>
+</div>
+{% endblock %}

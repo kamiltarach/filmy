@@ -3,24 +3,61 @@
 {% block content %}
     <h1 class="moje_filmy">Moje Filmy</h1>
 
+    <div class="search-container">
+        <form method="GET">
+            <input type="text" name="szukaj" placeholder="Wpisz tytuł filmu..." value="{{ request.GET.szukaj|default:'' }}">
+            <button type="submit">Szukaj</button>
+        </form>
+    </div>
+
     {% for film in filmy %}
-        <a href="{% url 'edytuj_film' film.id %}" class="link-filmu">
-            <div class="karta-filmu">
+        <div class="karta-filmu zwiniete" onclick="pokazSzczegoly(this)">
+            
+            <div class="naglowek-filmu">
                 <h2 class="tytul">{{ film.tytul }}</h2>
                 
                 {% if film.plakat %}
-                    <img src="{{ film.plakat.url }}" alt="Plakat" class="plakat-img">
+                    <img src="{{ film.plakat.url }}" alt="Plakat" class="plakat-hover">
                 {% endif %}
-                
-                {% if film.ocena %}
-                    <div class="ocena-badge">
-                        ⭐ {{ film.ocena }} / 10
-                    </div>
-                {% endif %}
-
-                <p class="rezyser">REŻYSER: <span>{{ film.rezyser }}</span></p>
-                <p class="opis">{{ film.opis }}</p>
             </div>
-        </a>
+
+            <div class="szczegoly">
+                <div class="info-grid">
+                    {% if film.plakat %}
+                        <img src="{{ film.plakat.url }}" class="plakat-duzy">
+                    {% endif %}
+                    
+                    <div class="teksty">
+                        {% if film.ocena %}
+                            <div class="ocena-badge">⭐ {{ film.ocena }} / 10</div>
+                        {% endif %}
+                        
+                        <p class="rezyser">REŻYSER: <span>{{ film.rezyser }}</span></p>
+                        <p class="opis">{{ film.opis }}</p>
+                        
+                        <div class="przyciski-akcji">
+                            <a href="{% url 'edytuj_film' film.id %}" class="btn-edytuj">EDYTUJ</a>
+                            
+                            <a href="{% url 'usun_film' film.id %}" class="btn-edytuj" style="background-color: #E50914; border: 1px solid #E50914; margin-left: 10px;">USUŃ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
     {% endfor %}
+
+    <script>
+        function pokazSzczegoly(element) {
+            // Jeśli klikniemy w przycisk (a, button), nie zwijaj karty
+            if (event.target.tagName === 'A' || event.target.tagName === 'BUTTON') {
+                return;
+            }
+            
+            // Przełączamy klasę z 'zwiniete' na 'rozwiniete'
+            element.classList.toggle("rozwiniete");
+            element.classList.toggle("zwiniete");
+        }
+    </script>
+
 {% endblock %}
