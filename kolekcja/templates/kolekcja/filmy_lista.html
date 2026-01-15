@@ -4,51 +4,66 @@
 {% block content %}
 
     <div class="logo-container">
-        <img src="{% static 'img/logo-czary.png' %}" alt="Czary Mary Logo" class="logo-baner">
+        <a href="https://youtu.be/dQw4w9WgXcQ?si=2mGfGGCswaB2uTMi" target="_blank"><img src="{% static 'img/logo-czary.png' %}" alt="Czary Mary Logo" class="logo-baner"></a>
     </div>
 
     <div class="search-container">
-        <form method="GET">
-            <input type="text" name="szukaj" placeholder="Wpisz tytuł filmu..." value="{{ request.GET.szukaj|default:'' }}">
+        
+        <form method="GET" class="search-form">
+            <input type="text" name="szukaj" placeholder="Wpisz tytuł..." value="{{ request.GET.szukaj|default:'' }}">
             <button type="submit">Szukaj</button>
         </form>
+
+        <select id="sort-select" onchange="sortujFilmyJS()">
+            <option value="data_desc">Najnowsze dodane</option>
+            <option value="data_asc">Najstarsze dodane</option>
+            <option value="ocena_desc">Ocena: Najwyższa</option>
+            <option value="ocena_asc">Ocena: Najniższa</option>
+            <option value="tytul_asc">Tytuł: A-Z</option>
+        </select>
     </div>
 
-    {% for film in filmy %}
-        <div class="karta-filmu zwiniete" onclick="pokazSzczegoly(this)">
-            
-            <div class="naglowek-filmu">
-                <h2 class="tytul">{{ film.tytul }}</h2>
+    <div id="kontener-filmow">
+        {% for film in filmy %}
+            <div class="karta-filmu zwiniete" 
+                 onclick="pokazSzczegoly(this)"
+                 data-tytul="{{ film.tytul|lower }}" 
+                 data-ocena="{{ film.ocena|default:0 }}"
+                 data-id="{{ film.id }}">
                 
-                {% if film.plakat %}
-                    <img src="{{ film.plakat.url }}" alt="Plakat" class="plakat-hover">
-                {% endif %}
-            </div>
-
-            <div class="szczegoly">
-                <div class="info-grid">
-                    {% if film.plakat %}
-                        <img src="{{ film.plakat.url }}" class="plakat-duzy">
-                    {% endif %}
+                <div class="naglowek-filmu">
+                    <h2 class="tytul">{{ film.tytul }}</h2>
                     
-                    <div class="teksty">
-                        {% if film.ocena %}
-                            <div class="ocena-badge">⭐ {{ film.ocena }} / 10</div>
+                    {% if film.plakat %}
+                        <img src="{{ film.plakat.url }}" alt="Plakat" class="plakat-hover">
+                    {% endif %}
+                </div>
+
+                <div class="szczegoly">
+                    <div class="info-grid">
+                        {% if film.plakat %}
+                            <img src="{{ film.plakat.url }}" class="plakat-duzy">
                         {% endif %}
                         
-                        <p class="rezyser">REŻYSER: <span>{{ film.rezyser }}</span></p>
-                        <p class="opis">{{ film.opis }}</p>
-                        
-                        <div class="przyciski-akcji">
-                            <a href="{% url 'edytuj_film' film.id %}" class="btn-edytuj">EDYTUJ</a>
-                            <a href="{% url 'usun_film' film.id %}" class="btn-edytuj btn-usun" style="background-color: #E50914; border: 1px solid #E50914; margin-left: 10px;">USUŃ</a>
+                        <div class="teksty">
+                            {% if film.ocena %}
+                                <div class="ocena-badge">⭐ {{ film.ocena }} / 10</div>
+                            {% endif %}
+                            
+                            <p class="rezyser">REŻYSER: <span>{{ film.rezyser }}</span></p>
+                            <p class="opis">{{ film.opis }}</p>
+                            
+                            <div class="przyciski-akcji">
+                                <a href="{% url 'edytuj_film' film.id %}" class="btn-edytuj">EDYTUJ</a>
+                                <a href="{% url 'usun_film' film.id %}" class="btn-edytuj btn-usun" style="background-color: #E50914; border: 1px solid #E50914; margin-left: 10px;">USUŃ</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
-            
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 
     <script>
         function pokazSzczegoly(element) {
@@ -57,6 +72,35 @@
             }
             element.classList.toggle("rozwiniete");
             element.classList.toggle("zwiniete");
+        }
+
+        function sortujFilmyJS() {
+            const opcja = document.getElementById('sort-select').value;
+            const kontener = document.getElementById('kontener-filmow');
+            const karty = Array.from(kontener.getElementsByClassName('karta-filmu'));
+
+            karty.sort((a, b) => {
+                const tytulA = a.getAttribute('data-tytul');
+                const tytulB = b.getAttribute('data-tytul');
+                const ocenaA = parseFloat(a.getAttribute('data-ocena'));
+                const ocenaB = parseFloat(b.getAttribute('data-ocena'));
+                const idA = parseInt(a.getAttribute('data-id'));
+                const idB = parseInt(b.getAttribute('data-id'));
+
+                if (opcja === 'tytul_asc') {
+                    return tytulA.localeCompare(tytulB);
+                } else if (opcja === 'ocena_desc') {
+                    return ocenaB - ocenaA;
+                } else if (opcja === 'ocena_asc') {
+                    return ocenaA - ocenaB;
+                } else if (opcja === 'data_asc') {
+                    return idA - idB; 
+                } else {
+                    return idB - idA; 
+                }
+            });
+
+            karty.forEach(karta => kontener.appendChild(karta));
         }
     </script>
 

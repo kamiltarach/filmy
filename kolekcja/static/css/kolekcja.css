@@ -1,9 +1,11 @@
-/* =========================================
-   1. GLOBALNE USTAWIENIA (DARK MODE)
-   ========================================= */
-   body {
-    background-color: #121212; /* Głęboka czerń */
-    color: #e0e0e0; /* Jasnoszary tekst (mniej męczy oczy niż biały) */
+body {
+    background-image: url('../img/tlo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #121212;
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.4);
+    color: #e0e0e0;
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
@@ -13,16 +15,15 @@
     align-items: center;
 }
 
-/* =========================================
-   2. NAVBAR (MINIMALISTYCZNY)
-   ========================================= */
 .navbar {
     width: 100%;
-    background-color: #000; /* Czysta czerń */
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 15px 0;
-    border-bottom: 2px solid #E50914; /* Czerwona linia na dole */
+    border-bottom: 2px solid #E50914;
     box-shadow: 0 4px 10px rgba(0,0,0,0.8);
-    position: sticky; /* Przyklejony do góry */
+    position: sticky;
     top: 0;
     z-index: 1000;
     display: flex;
@@ -31,9 +32,8 @@
     gap: 40px;
 }
 
-/* Prosty tekst w menu (zamiast obrazka) */
 .logo {
-    color: #E50914; /* Netflix Red */
+    color: #E50914;
     font-size: 1.5rem;
     font-weight: 700;
     text-decoration: none;
@@ -55,6 +55,7 @@
     border-radius: 4px;
     transition: all 0.3s;
     font-size: 0.9rem;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .btn-dodaj:hover {
@@ -62,19 +63,13 @@
     color: black;
 }
 
-/* =========================================
-   3. KONTENER GŁÓWNY
-   ========================================= */
 .content-container {
-    max-width: 800px;
-    width: 90%;
-    margin-top: 30px; /* Odstęp od navbaru */
+    max-width: 1000px;
+    width: 95%;
+    margin-top: 30px;
     padding-bottom: 60px;
 }
 
-/* =========================================
-   4. DUŻY BANER Z LOGO (NOWOŚĆ)
-   ========================================= */
 .logo-container {
     text-align: center;
     margin-bottom: 40px;
@@ -86,8 +81,7 @@
     width: 100%;
     height: auto;
     border-radius: 15px;
-    /* Magiczna fioletowa poświata pasująca do logo "Czary Mary" */
-    box-shadow: 0 0 25px rgba(100, 50, 200, 0.4); 
+    box-shadow: 0 0 25px rgba(100, 50, 200, 0.4);
     transition: transform 0.3s ease;
 }
 
@@ -95,66 +89,87 @@
     transform: scale(1.02);
 }
 
-/* =========================================
-   5. WYSZUKIWARKA
-   ========================================= */
 .search-container {
     margin-bottom: 30px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+}
+
+.search-container input,
+.search-container select,
+.search-container button {
+    height: 46px;
+    padding: 0 20px;
+    background-color: rgba(30, 30, 30, 0.6);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    outline: none;
+    transition: 0.3s;
 }
 
 .search-container input {
-    padding: 12px 15px;
-    width: 60%;
-    max-width: 300px;
-    background-color: #333;
-    border: 1px solid #444;
-    color: white;
-    border-radius: 4px;
-    font-size: 1rem;
-    outline: none;
+    width: 250px;
 }
 
-.search-container input:focus {
+.search-container input:focus,
+.search-container select:focus {
     border-color: #E50914;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.search-container select {
+    cursor: pointer;
+}
+
+.search-container select option {
+    background-color: #222;
 }
 
 .search-container button {
-    padding: 12px 25px;
-    margin-left: 10px;
     background-color: #E50914;
-    color: white;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
-    font-size: 1rem;
-    transition: background 0.2s;
+    margin: 0;
 }
 
 .search-container button:hover {
     background-color: #b20710;
 }
 
-/* =========================================
-   6. LISTA FILMÓW (AKORDEON)
-   ========================================= */
 .karta-filmu {
-    background-color: #1e1e1e;
+    background-color: rgba(30, 30, 30, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     margin-bottom: 12px;
     border-radius: 6px;
     border-left: 6px solid #E50914;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s;
     position: relative;
-    overflow: visible; /* Ważne, żeby dymek z plakatem mógł wystawać */
+    overflow: visible;
 }
 
 .karta-filmu:hover {
-    background-color: #2a2a2a;
+    background-color: rgba(60, 60, 60, 0.75);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* Nagłówek (widoczny zawsze) */
 .naglowek-filmu {
     padding: 20px;
     position: relative;
@@ -165,13 +180,13 @@
     font-size: 1.4rem;
     color: white;
     font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-/* --- Plakat "Dymek" (Hover na zwiniętej karcie) --- */
 .plakat-hover {
     display: none;
     position: absolute;
-    bottom: 80%; /* Wyskakuje nad tytułem */
+    bottom: 80%;
     left: 20px;
     width: 120px;
     height: auto;
@@ -179,26 +194,21 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.8);
     z-index: 100;
     border: 2px solid #E50914;
-    pointer-events: none; /* Żeby nie przeszkadzał w klikaniu */
+    pointer-events: none;
 }
 
-/* Pokazujemy dymek tylko gdy najeżdżamy na ZWINIĘTĄ kartę */
 .zwiniete .naglowek-filmu:hover .plakat-hover {
     display: block;
     animation: fadeIn 0.3s ease-in-out;
 }
 
-/* =========================================
-   7. SZCZEGÓŁY (ROZWINIĘCIE)
-   ========================================= */
 .szczegoly {
-    display: none; /* Domyślnie ukryte */
+    display: none;
     padding: 25px;
-    background-color: #161616; /* Ciemniejsze tło w środku */
-    border-top: 1px solid #333;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Klasa .rozwiniete jest dodawana przez JavaScript */
 .rozwiniete .szczegoly {
     display: block;
     animation: slideDown 0.4s ease;
@@ -221,7 +231,7 @@
 }
 
 .ocena-badge {
-    background-color: #f5c518; /* IMDb Yellow */
+    background-color: #f5c518;
     color: black;
     display: inline-block;
     padding: 4px 10px;
@@ -232,7 +242,7 @@
 }
 
 .rezyser {
-    color: #888;
+    color: #aaa;
     font-size: 0.85rem;
     margin-bottom: 10px;
     font-weight: 700;
@@ -240,19 +250,18 @@
 }
 
 .rezyser span {
-    color: #ccc;
+    color: #e0e0e0;
     font-weight: normal;
     text-transform: none;
 }
 
 .opis {
-    color: #d1d1d1;
+    color: #ddd;
     line-height: 1.6;
     font-size: 1rem;
     margin-bottom: 25px;
 }
 
-/* Przyciski Edytuj / Usuń */
 .przyciski-akcji {
     display: flex;
     gap: 10px;
@@ -261,50 +270,49 @@
 .btn-edytuj {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #333;
+    background-color: rgba(255, 255, 255, 0.1);
     color: white;
     text-decoration: none;
     border-radius: 4px;
     font-weight: bold;
     transition: 0.2s;
-    border: 1px solid #444;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     font-size: 0.9rem;
 }
 
 .btn-edytuj:hover {
-    background-color: #555;
-    border-color: #666;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: white;
 }
 
-/* Specjalny styl dla przycisku usuwania (zostanie nadpisany inline w HTML, ale tu baza) */
 .btn-usun:hover {
     background-color: #b20710 !important;
+    border-color: #b20710 !important;
 }
 
-/* =========================================
-   8. FORMULARZE (DODAJ/EDYTUJ/USUŃ)
-   ========================================= */
 .form-container {
-    background-color: #1e1e1e;
+    background-color: rgba(30, 30, 30, 0.85);
+    backdrop-filter: blur(10px);
     padding: 40px;
     border-radius: 8px;
     width: 100%;
     max-width: 500px;
-    margin: 0 auto; /* Wyśrodkowanie */
+    margin: 0 auto;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .form-container input, 
 .form-container textarea, 
 .form-container select {
     width: 100%;
-    background-color: #333;
-    border: 1px solid #444;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
     padding: 12px;
     margin-bottom: 20px;
     border-radius: 4px;
-    box-sizing: border-box; /* Żeby padding nie psuł szerokości */
+    box-sizing: border-box;
 }
 
 .form-container label {
@@ -331,15 +339,11 @@
     background-color: #f40612;
 }
 
-/* Usuwamy brzydki tekst "Currently..." w formularzu edycji obrazka */
 .form-container a {
     color: #E50914;
     text-decoration: none;
 }
 
-/* =========================================
-   9. ANIMACJE I RWD
-   ========================================= */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -359,8 +363,17 @@
         width: 100%;
         max-width: 250px;
     }
-    .search-container input {
-        width: 50%;
+    .search-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-form {
+        flex-direction: column;
+    }
+    .search-container input,
+    .search-container select,
+    .search-container button {
+        width: 100%;
     }
     .logo-baner {
         width: 100%;
